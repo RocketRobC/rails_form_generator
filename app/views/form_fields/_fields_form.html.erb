@@ -1,0 +1,10 @@
+<div class='my-4'>
+  <%= fields_for 'form_template[form_fields_attributes][]', FormField.new, index: Time.now.to_i do |ff| %>
+    <p><%= ff.label :label, class: 'text-sm' %></p>
+    <p><%= ff.text_field :label, class: 'border border-md rounded-md' %></p>
+    <p><%= ff.label :field_type, class: 'text-sm' %></p>
+    <p><%= ff.text_field :field_type, class: 'border border-md rounded-md' %></p>
+    <p><%= ff.label :order, class: 'text-sm' %></p>
+    <p><%= ff.number_field :order, class: 'border border-md rounded-md' %></p>
+  <% end %>
+</div>

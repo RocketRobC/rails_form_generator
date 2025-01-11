@@ -1,0 +1,16 @@
+<section>
+  <%= form_with(model: @form_template) do |f| %>
+    <p><%= f.label :form_name, class: 'font-bold' %></p>
+    <%= f.text_field :name, class: 'border border-md rounded-md' %>
+
+    <div id='fields'></div>
+
+    <div class='my-2'>
+      <%= button_tag 'Add Field', formaction: new_form_field_path, formmethod: :get, data: { turbo_stream: true } %>
+    </div>
+
+    <div class='my-2'>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</section>

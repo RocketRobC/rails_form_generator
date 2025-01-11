@@ -1,0 +1,12 @@
+<section>
+<p class='text-2xl font-bold'>Form Generator</p>
+<p class='text-sm'>Create a new form or select one below</p>
+<div class='my-4'>
+  <% @form_templates&.each do |ft| %>
+    <%= render 'form_template', form_template: ft %>
+  <% end %>
+</div>
+</section>
+<p>
+  <%= link_to 'New Form Template', new_form_template_path, class: 'font-bold' %>
+</p>

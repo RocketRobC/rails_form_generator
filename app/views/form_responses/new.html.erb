@@ -1,0 +1,14 @@
+<section>
+  <%= form_with(model: @form_response) do |form| %>
+    <% @template_fields.each do |tf| %>
+      <p class='my-2'>
+        <%= render FormField::PARTIALS[tf.field_type], form: form, tf: tf %>
+      </p>
+    <% end %>
+
+    <%= form.hidden_field :form_template_id, value: params.expect(:form_template_id) %>
+    <%= form.hidden_field :user_id, value: 1 %>
+
+    <%= form.submit 'Submit Response' %>
+  <% end %>
+</section>

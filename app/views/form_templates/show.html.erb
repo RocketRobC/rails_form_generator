@@ -1,0 +1,42 @@
+<section>
+  <p class='font-bold text-xl'>
+    <%= @form_template.name %>
+  </p>
+  <p class='text-sm'>
+    <%= @form_template.form_fields.count %> fields
+  </p>
+  <div class='my-4'>
+    <%= link_to 'Generate Form', new_form_response_path(form_template_id: @form_template) %>
+  </div>
+
+  <div class='my-2 border border-sm p-2'>
+    <% @form_template.form_fields.order(:order).each do |ff| %>
+      <p>
+        <span class='text-sm font-bold'>Type: </span>
+        <span class='text-sm'><%= ff.field_type %></span>
+        <span class='text-sm font-bold'>Label: </span>
+        <span class='text-sm'><%= ff.label %></span>
+      </p>
+    <% end %>
+  </div>
+
+  <div class='my-4 border border-sm p-2'>
+    <p class='font-bold'>Form Responses</p>
+    <% @responses.each do |resp| %>
+      <div class='my-4'>
+        <p>
+          <span class='text-sm font-bold'>Date: </span>
+          <span class='text-sm'><%= resp.created_at %></span>
+        </p>
+        <p>
+          <span class='text-sm font-bold'>User: </span>
+          <span class='text-sm'><%= resp.user.name %></span>
+        </p>
+        <p>
+          <span class='text-sm font-bold'>Data: </span>
+          <span class='text-sm'><%= resp.response_data %></span>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</section>
