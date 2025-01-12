@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :form_templates
   resources :form_fields, only: [:new]
   resources :form_responses
+  resources :form_field_options, only: [:new]
 end

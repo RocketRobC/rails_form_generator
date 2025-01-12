@@ -1,10 +1,18 @@
 <div class='my-4'>
-  <%= fields_for 'form_template[form_fields_attributes][]', FormField.new, index: Time.now.to_i do |ff| %>
-    <p><%= ff.label :label, class: 'text-sm' %></p>
+  <% idx = Time.now.to_i %>
+  <%= fields_for 'form_template[form_fields_attributes][]', FormField.new, index: idx do |ff| %>
+    <p><%= ff.label :label, class: 'text-sm font-bold' %></p>
     <p><%= ff.text_field :label, class: 'border border-md rounded-md' %></p>
-    <p><%= ff.label :field_type, class: 'text-sm' %></p>
-    <p><%= ff.text_field :field_type, class: 'border border-md rounded-md' %></p>
-    <p><%= ff.label :order, class: 'text-sm' %></p>
+    <p><%= ff.label :order, class: 'text-sm font-bold' %></p>
     <p><%= ff.number_field :order, class: 'border border-md rounded-md' %></p>
+    <p><%= ff.label :field_type, class: 'text-sm font-bold' %></p>
+    <p>
+      <%= ff.select :field_type, options_for_select(FormField::PARTIALS.keys.map { [_1.titleize, _1] }), {}, class: 'border border-md rounded-md' %>
+      <%= button_tag 'Add Option', formaction: new_form_field_option_path, formmethod: :get, data: { turbo_stream: true } do %>
+        Add Option
+        <%= hidden_field_tag 'field_id', idx %>
+      <% end %>
+    </p>
+    <div id="field_options_<%= idx %>"></div>
   <% end %>
 </div>

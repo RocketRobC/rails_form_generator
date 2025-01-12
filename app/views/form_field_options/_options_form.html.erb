@@ -1,0 +1,9 @@
+<div class='my-4 pl-4'>
+  <%= fields_for "form_template[form_fields_attributes][#{id}][form_field_options_attributes][]", FormFieldOption.new, index: Time.now.to_i do |ffo| %>
+    <p><%= ffo.label :value, class: 'text-sm font-bold' %></p>
+    <p><%= ffo.text_field :value, class: 'border border-md rounded-md' %></p>
+    <p><%= ffo.label :order, class: 'text-sm font-bold' %></p>
+    <p><%= ffo.number_field :order, class: 'border border-md rounded-md' %></p>
+  <% end %>
+</div>
+

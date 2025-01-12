@@ -6,8 +6,7 @@ class FormTemplatesController < ApplicationController
   end
 
   def new
-    @form_field = FormField.new
-    @form_template = FormTemplate.new(form_fields: [@form_field])
+    @form_template = FormTemplate.new
   end
 
   def show
@@ -31,6 +30,20 @@ class FormTemplatesController < ApplicationController
   end
 
   def form_template_params
-    params.expect(form_template: [:name, form_fields_attributes: [[:label, :field_type, :order]] ])
+    params.expect(form_template:
+                  [
+                    :name,
+                    form_fields_attributes:
+                   [[
+                     :label,
+                     :field_type,
+                     :order,
+                     form_field_options_attributes:
+                      [[
+                        :value,
+                        :order
+                      ]]
+                   ]]
+                  ])
   end
 end

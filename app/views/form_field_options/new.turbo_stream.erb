@@ -1,0 +1,3 @@
+<%= turbo_stream.append "field_options_#{params[:field_id]}" do %>
+  <%= render 'form_field_options/options_form', id: params[:field_id] %>
+<% end %>

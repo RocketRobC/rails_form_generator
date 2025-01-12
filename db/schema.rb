@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_11_014012) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_12_024252) do
+  create_table "form_field_options", force: :cascade do |t|
+    t.string "value"
+    t.integer "order"
+    t.integer "form_field_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["form_field_id"], name: "index_form_field_options_on_form_field_id"
+  end
+
   create_table "form_fields", force: :cascade do |t|
     t.integer "form_template_id"
     t.string "label"
@@ -43,6 +52,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_11_014012) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "form_field_options", "form_fields"
   add_foreign_key "form_fields", "form_templates"
   add_foreign_key "form_responses", "form_templates"
   add_foreign_key "form_responses", "users"

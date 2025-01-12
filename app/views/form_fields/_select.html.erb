@@ -1,0 +1,2 @@
+<%= form.label "#{tf.label}", class: 'text-sm' %>
+<%= form.select :options, options_for_select(tf.form_field_options.map { [_1.value, _1.id] }), {}, id: "form_response_field_#{tf.id}", name: form.field_name(:response_data, tf.id), class: 'border border-sm rounded-sm' %>
